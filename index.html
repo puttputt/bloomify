@@ -38,7 +38,8 @@
         </div>
 
         <div class="row mt-3">
-            <canvas id="canvas" width="1200" height="1200"></canvas>
+            <canvas id="canvas" width="1200" height="1200" style="display: none;"></canvas>
+            <img crossOrigin="anonymous" id="canvasSource" />
         </div>
     </div>
 
@@ -84,13 +85,14 @@
 
                 context.drawImage(img1, 0, 0);
                 context.drawImage(img2, 0, 0, img1.width, img1.height);
+
+                document.getElementById('canvasSource').src = canvas.toDataURL();
             };
 
         };
         
         (function () {
-            canvas.src = canvas.toDataURL();
-
+    
             document.getElementById('button').addEventListener('click', () => doOverlay());
 
             document.getElementById('example').addEventListener('click', () => doOverlay('assets/test.jpg'));
